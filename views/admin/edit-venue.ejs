@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+  <style>
+    .error-message {
+        display: none;
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+
+ <!-- Header and sidebar  -->
+ <%- include('navigation') -%> 
+ <!-- Header and sidebar end  -->
+
+
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Venue</h1>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add new venue</h5>
+              <form action="/admin/edit-venue/<%= venue[0].venue_id %>" method="POST"  onsubmit="return validateForm()">
+                  <div class="row mb-3">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Venue Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" value="<%= venue[0].venue_name %>" aria-describedby="emailHelp" name="name" required>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Category</label>
+                      <select id="disabledSelect" class="form-select" name="category" value="<%= venue[0].venue_category %>">
+                        <option>Category select</option>
+                        <option value="Indoor">Indoor</option>
+                        <option value="Outdoor">Outdoor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Venue Amount</label>
+                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="amount" value="<%= venue[0].venue_amount %>" required>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Venue Capacity</label>
+                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="capacity"  value="<%= venue[0].venue_capacity %>" required>
+                    </div>
+                    
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Venue Location</label>
+                      <textarea class="form-control" id="location" name="location" rows="2" cols="50"><%= venue[0].venue_location %></textarea>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                      <label for="exampleInputEmail1" class="form-label">Venue Image</label>   
+                      <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="file">
+                      
+                    </div>
+                  </div>
+
+                    <div class="row mb-3">
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <label for="exampleInputEmail1" class="form-label">Venue Description</label>
+                      <textarea class="form-control" id="productDescription" name="desc" rows="2" cols="50"><%= venue[0].venue_desc %></textarea>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+                  <a href="/admin/venue" class="btn btn-danger">Reset</a>
+                </form>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('scripts') -%>
+</body>
+</html>

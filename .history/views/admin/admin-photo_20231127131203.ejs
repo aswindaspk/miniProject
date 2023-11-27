@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+</head>
+
+<body>
+
+   <!-- Header and sidebar  -->
+ <%- include('navigation') -%> 
+ <!-- Header and sidebar end  -->
+
+
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Photography/Videography</h1>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add new photography/videograpy team</h5>
+              <form action="/admin/add-photo" method="POST">  
+                  <div class="row mb-3">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Photography Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" value="">
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Location</label>
+                      <textarea class="form-control" id="productDescription" name="location" rows="2" cols="50"></textarea>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Photography amount per day</label>
+                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="amount" value="">
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                        <label for="exampleInputEmail1" class="form-label">Videography amount per day</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="amount_v" value="">
+                      </div>
+                    
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <label for="exampleInputEmail1" class="form-label">Description</label>
+                      <textarea class="form-control" id="productDescription" name="desc" rows="2" cols="50"></textarea>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" name="submitp">Submit</button>
+                  <a href="/admin/photo" class="btn btn-danger">Reset</a>
+                </form>
+              </div>
+            </div>
+
+<!-- table begin -->
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Photography List</h5>
+                <div class="table-responsive">
+                  <table class="table text-nowrap mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Id</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Photography name</h6>
+                        </th>
+                      
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Location</h6>
+                          </th>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">photo price</h6>
+                          </th>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">vieo price</h6>
+                          </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Description</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Edit</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Delete</h6>
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <% if ( photo && photo.length > 0) { %>
+                        <% photo.forEach((Item, index) => { %>
+                      <tr>
+                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= index + 1 %></h6></td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= Item.photo_name %></p>                         
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= Item.photo_location %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= Item.photo_amount %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= Item.video_amount %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= Item.photo_desc %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                        <a href="/admin/edit-photo?id=<%= encodeURIComponent(Item.photo_id) %>"><span><i class="ti ti-edit btn btn-outline-success"></i></span></a>
+                        </td>
+                        <td class="border-bottom-0">
+                        <a href="/admin/delete-photo?id=<%= encodeURIComponent(Item.photo_id) %>"><span><i class="ti ti-trash btn btn-outline-danger"></i></span></a>
+                        </td>
+                      </tr>   
+                      <% }); %>
+                      <% } else { %>
+                        <tr>
+                          <td colspan="9" class="text-center">No data available</td>
+                        </tr>
+                      <% } %>                      
+                    </tbody>  
+
+                  </table>
+                </div>
+              </div>
+            </div>
+<!-- table end -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('scripts') -%>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+  <style>
+    .error-message {
+        display: none;
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+  <!-- Header and sidebar  -->
+  <%- include('navigation') -%> 
+    <!-- Header and sidebar end  -->
+ 
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Catering team</h1>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Edit catering team</h5>
+                <form action="/admin/edit-catering/<%= catering[0].catering_id %>" method="POST" onsubmit="return validateForm()">
+                  <div class="row mb-3">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Catering team Name</label>
+                      <input type="text" class="form-control" id="name" value="<%= catering[0].catering_name %>" aria-describedby="emailHelp" name="name" required>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                        <label for="exampleInputEmail1" class="form-label">Catering team Location</label>
+                        <textarea class="form-control" id="location" name="location" rows="2" value="<%= catering[0].catering_location %>" cols="50" required> <%= catering[0].catering_location %></textarea>
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                    
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <label for="exampleInputEmail1" class="form-label">Catering team Description</label>
+                      <textarea class="form-control" id="desc" name="desc" rows="2" cols="50"  required> <%= catering[0].catering_desc %></textarea>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Username</label>
+                      <input type="text" class="form-control" id="username" aria-describedby="emailHelp" value="<%= catering[0].catering_username %>" name="username" required>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Password</label>
+                      <div id="password-error" class="error-message"></div>
+                      <input type="text" class="form-control" id="pass" aria-describedby="emailHelp" name="password" value="<%= catering[0].catering_password %>" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+                  <a href="/admin/catering" class="btn btn-danger">Reset</a>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <%- include('scripts') -%> 
+ <script>
+  function validateForm() {
+      var password = document.getElementById('pass').value;
+
+      // Reset error messages
+
+      document.getElementById('password-error').style.display = 'none';
+      // Repeat similar structure for other error message elements
+
+      // Validate Password
+      if (!/^(?=.*[a-zA-Z])(?=.*\d).{8,}$/.test(password)) {
+          document.getElementById('password-error').style.display = 'block';
+          document.getElementById('password-error').innerText = 'Password must be 8 characters and contain at least one letter and one digit';
+          return false;
+      }
+
+    
+
+      return true; // Submit the form if all validations pass
+
+  }
+</script>
+
+</body>
+</html>

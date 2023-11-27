@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+  <style>
+    .error-message {
+        display: none;
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+  <!-- Header and sidebar  -->
+  <%- include('navigation') -%> 
+  <!-- Header and sidebar end  -->
+
+
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Staffs</h1>
+            <div class="card">
+              
+              <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Edit new staff</h5>
+                <form action="/admin/edit-staff/<%= staff[0].staff_id %>" method="POST" onsubmit="return validateForm()">
+                  <div class="row mb-3">
+                      <div class="col-lg-8 col-md-8 col-sm-8">
+                          <label for="Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="staffname" value="<%= staff[0].staff_name %>" name="staffname" required>
+                      </div>
+                      <div class="col-lg-8 col-md-8 col-sm-8">
+                          <label for="DOB" class="form-label">DOB</label>
+                          <input type="date" class="form-control" id="staffdob" name="staffdob" value="<%= staff[0].dob.toISOString().split('T')[0] %>" required>
+                      </div>
+                      <!-- ... other form fields ... -->
+                      <div class="col-lg-6 col-md-4 col-sm-4">
+                          <label for="exampleInputEmail1" class="form-label">Phone</label>
+                          <input type="number" class="form-control" id="staffphone" name="staffphone" value="<%= staff[0].staff_phone %>" required>
+                          <div id="phone-error" class="error-message"></div>
+                      </div>
+                      <div class="col-lg-6 col-md-4 col-sm-4">
+                          <label for="exampleInputEmail1" class="form-label">Address</label>
+                          <textarea class="form-control" id="staffaddress" name="staffaddress" rows="2" cols="50" required><%= staff[0].staff_address %></textarea>
+                      </div>
+                      <div class="col-lg-6 col-md-4 col-sm-4">
+                          <label for="exampleInputEmail1" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="staffusername" name="staffusername" value="<%= staff[0].staff_username %>" required>
+                      </div>
+                      <div class="col-lg-6 col-md-4 col-sm-4">
+                          <label for="exampleInputEmail1" class="form-label">Password</label>
+                          <input type="text" class="form-control" id="staffpass" name="staffpass" value="<%= staff[0].staff_password %>" required>
+                          <div id="password-error" class="error-message"></div>
+                      </div>
+                  </div>
+                  <button type="submit" class="col-2 mt-2 btn btn-primary" name="submitp">Submit</button>
+                  <a href="/admin/staff" class="col-2 mt-2 btn btn-danger">Reset</a>
+              </form>
+              
+              </div>
+            </div>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('scripts') -%>
+  <script>
+    function validateForm() {
+        var phone = document.getElementById('staffphone').value;
+        var password = document.getElementById('staffpass').value;
+
+        // Reset error messages
+
+        document.getElementById('phone-error').style.display = 'none';
+        document.getElementById('password-error').style.display = 'none';
+        // Repeat similar structure for other error message elements
+
+        // Validate Phone
+        if (!/^\d{10}$/.test(phone)) {
+            document.getElementById('phone-error').style.display = 'block';
+            document.getElementById('phone-error').innerText = 'Phone must be 10 digits';
+            return false;
+        }
+
+        // Validate Password
+        if (!/^(?=.*[a-zA-Z])(?=.*\d).{8,}$/.test(password)) {
+            document.getElementById('password-error').style.display = 'block';
+            document.getElementById('password-error').innerText = 'Password must be 8 characters and contain at least one letter and one digit';
+            return false;
+        }
+
+      
+
+        return true; // Submit the form if all validations pass
+
+    }
+</script>
+</body>
+</html>

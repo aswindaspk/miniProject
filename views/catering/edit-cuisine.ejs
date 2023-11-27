@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catering Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/catering/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+</head>
+
+<body>
+ <!-- Header and sidebar  -->
+ <%- include('navigation') -%> 
+ <!-- Header and sidebar end  -->
+
+
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Edit Cuisines</h1>
+            <div class="card">
+              <div class="card-body">
+              <form method="POST" action="/catering/edit-cuisine/<%= cuisine[0].cuisine_id %>" enctype="multipart/form-data" >  
+                  <div class="row mb-3">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="cateringSelect" class="form-label">Select Catering</label>
+                      <select class="form-control" id="cateringSelect" name="catering_id" required>
+                          <% for (let i = 0; i < caterings.length; i++) { %>
+                            <option value="<%= caterings[i].catering_id %>"  <%= (caterings[i].catering_id === caterings[i].catering_id) ? 'selected' : '' %>> <%= caterings[i].catering_name %></option>
+                          <% } %>
+                      </select>
+                  </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Cuisine Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" value="<%= cuisine[0].cuisine_name %>" required>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Category</label>
+                      <select id="disabledSelect" class="form-select" name="cat" required>
+                        <option>Category select</option>
+                         <option value="Indian-Veg"  <%= (cuisine[0].cuisine_category === "Indian-Veg") ? 'selected' : '' %>>Indian-Veg</option>
+                         <option value="Indian-Non-Veg" <%= (cuisine[0].cuisine_category === "Indian-Non-Veg") ? 'selected' : '' %>>Indian-Non-Veg</option>
+                         <option value="Arabic" <%= (cuisine[0].cuisine_category === "Arabic") ? 'selected' : '' %>>Arabic</option>
+                         <option value="Italian" <%= (cuisine[0].cuisine_category === "Italian") ? 'selected' : '' %>>Italian</option>
+                         <option value="Chinese" <%= (cuisine[0].cuisine_category === "Chinese") ? 'selected' : '' %>>Chinese</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Price</label>
+                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" value="<%= cuisine[0].cuisine_price %>" required>
+                    </div>
+                   
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                      <label for="exampleInputEmail1" class="form-label">Image</label>
+                      <input id="InputFile" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="file" onchange="previewImage()">
+                      <img  id="ImagePreview" src="../../public/catering/cuisine/images/cuisine[0].cuisine_id %>.png" alt="" width="100">
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <label for="exampleInputEmail1" class="form-label">Description</label>
+                      <textarea class="form-control" id="productDescription" name="desc" rows="2" cols="50" required><%= cuisine[0].cuisine_desc %></textarea>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+                  <a href="/catering/cuisine" class="btn btn-danger">Reset</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function previewImage() {
+        var input = document.getElementById('InputFile');
+        var imgPreview = document.getElementById('ImagePreview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imgPreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+  <%- include('scripts') -%>
+</body>
+</html>

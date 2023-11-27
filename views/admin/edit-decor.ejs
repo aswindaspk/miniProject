@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="../../public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="../../public/admin/css/adminstyles.min.css" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+
+ <!-- Header and sidebar  -->
+ <%- include('navigation') -%> 
+ <!-- Header and sidebar end  -->
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Decor</h1>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add new decor</h5>
+              <form action="/admin/edit-decor/<%= decor[0].decor_id %>" method="POST" enctype="multipart/form-data" >  
+                  <div class="row mb-3">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                      <label for="exampleInputEmail1" class="form-label">Decor Name</label>
+                      <input type="text" class="form-control" value="<%= decor[0].decor_name%>" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" >
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Category</label>
+                      <select id="disabledSelect" class="form-select" name="category">
+                        <option>Category select</option>
+                        <option value="Indoor" <%= (decor[0].decor_category === 'Indoor') ? 'selected' : '' %>>Indoor</option>
+                        <option value="Outdoor" <%= (decor[0].decor_category === 'Outdoor') ? 'selected' : '' %>>Outdoor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                      <label for="exampleInputEmail1" class="form-label">Decor Price</label>
+                      <input type="number" class="form-control" value="<%= decor[0].decor_price %>" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" value="">
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                      <label for="exampleInputEmail1" class="form-label">Decor Image</label>
+                      <input type="file" class="form-control" id="InputFile" aria-describedby="emailHelp" name="file">
+                      <img id="decorImage" src="../../public/decor/images/<%= decor[0].decor_id %>.png" alt="" width="100">
+                  </div>
+                  </div>
+                  <div class="row mb-3">
+                   
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <label for="exampleInputEmail1" class="form-label">Decor Description</label>
+                      <textarea class="form-control" id="productDescription" name="desc" rows="2" cols="50"><%= decor[0].decor_desc %></textarea>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+                  <a href="/admin/decor" class="btn btn-danger">Reset</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Listen for changes in the file input
+        $('#InputFile').change(function () {
+            // Get the selected file
+            var file = $(this)[0].files[0];
+
+            // Update the src attribute of the image tag
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#decorImage').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+  <%- include('scripts') -%>
+</body>
+</html>
