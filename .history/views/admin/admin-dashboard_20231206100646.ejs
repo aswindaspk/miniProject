@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+</head>
+
+
+<body>
+
+ <!-- Header and sidebar  -->
+ <%- include('navigation') -%> 
+ <!-- Header and sidebar end  -->
+
+
+
+  <div class="container-fluid">
+      
+        
+    <div class="col-lg-8 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <h5 class="card-title fw-semibold mb-4">Recent Bookings</h5>
+          <div class="table-responsive">
+            <table class="table text-nowrap mb-0 align-middle">
+              <thead class="text-dark fs-4">
+                <tr>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Id</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Name</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Date</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">status</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Amount</h6>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if ( bookings && bookings.length > 0) { %>
+                  <% bookings.forEach((Items, index) => { %> 
+                    <tr>
+                      <td class="border-bottom-0"><h6 class="fw-semibold mb-0">Inde</h6></td>
+                      <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-1"><%=Items.username%></h6>                          
+                      </td>
+                      <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal"> <%=Items.eventdate%></p>
+                      </td>
+                      <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal"> <%=Items.status%></p>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">2000</h6>
+                      </td>
+                    </tr> 
+
+                <% }); %>
+                      <% } else { %>
+                        <tr>
+                          <td colspan="4" class="text-center">No recent booking data available</td>
+                        </tr>
+                      <% } %>              
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+     
+      </div>
+    </div>
+  </div>
+  <%- include('scripts') -%>
+</body>
+
+</html>

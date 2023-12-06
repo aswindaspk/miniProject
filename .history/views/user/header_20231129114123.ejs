@@ -1,0 +1,115 @@
+<header class="header">
+
+    <div class="header-wrap">
+
+        <div class="logo plain logo-left">
+            <div class="site-title">
+                <a href="/" title="Go to Home">Kaaf Events</a>
+            </div>
+        </div><!-- /logo -->
+
+
+        <nav id="nav" role="navigation">
+            <div class="table">
+                <div class="table-cell">
+                    <ul id="menu-menu-1">
+                        <li class="menu-item">
+                            <a href="/">Home</a></li>
+                        <li class="menu-item">
+                            <a href="#footr1">About Us</a></li>
+                        <li class="menu-item">
+                            <a href="#content">Services</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item">
+                                    <a href="#">Weddings</a></li>
+                                <li class="menu-item">
+                                    <a href="#">Birthdays</a></li>
+                                <li class="menu-item">
+                                    <a href="#">Gatherings</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#">Bridal Shower</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#">Baby Shower</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        
+                        <li class="menu-item">
+                            <a href="contact">Contact us</a></li>
+                        
+                        <li class="menu-inline menu-item">
+                            <a title="Facebook" href="https://www.facebook.com/kaafevents/">
+                                <i class="fa fa-facebook"></i><span class="i">Facebook</span>
+                            </a></li>
+                        
+                        <li class="menu-inline menu-item">
+                            <a title="Instagram" href="https://www.instagram.com/kaaf_events/?hl=en">
+                                <i class="fa fa-instagram"></i><span class="i">Instagram</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                        
+                            <% if (typeof user !== 'undefined' && user) { %>
+                                <div class="dropdown">
+                                    <a href="#" class="login-trigger"><i class="fa fa-user-o"></i>&nbsp;Hi , <%= user.user_name %></a>
+                                    <div class="dropdown-content">
+                                      <a href="#">Profile</a>
+                                      <a href="#">Bookings</a>
+                                      <a href="/signout">Logout</a>
+                                    </div>
+                                  </div>
+
+                            <% } else { %>
+                                <a href="/login" class="login-trigger"><i class="fa fa-user-o"></i>&nbsp Login</a>
+                            <% } %> 
+                           
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <a href="#nav" class="menu-trigger"><i class="fa fa-bars"></i></a>
+        
+
+    </div>
+
+</header>
+<style>
+    /* Style for the dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Style for the dropdown content */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    /* Style for the dropdown items */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Style for the dropdown items on hover */
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    /* Show the dropdown content when the dropdown is hovered over */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/public/admin/images/kaaflogo.png" />
+  <link rel="stylesheet" href="/public/admin/css/adminstyles.min.css" />
+</head>
+
+<body>
+ <!-- Header and sidebar  -->
+ <%- include('navigation') -%> 
+ <!-- Header and sidebar end  -->
+ 
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="fw-semibold mb-4">Booking Reque</h1>
+            <!-- table begin -->
+<div class="card w-100">
+  <div class="card-body p-3">
+    <h5 class="card-title fw-semibold mb-4">Booking  list</h5>
+    <div class="table-responsive">
+      <table class="table text-nowrap mb-0 align-middle">
+        <thead class="text-dark fs-4">
+          <tr>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Sl no</h6>
+            </th>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Customer name</h6>
+            </th>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Number</h6>
+            </th>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Description</h6>
+            </th>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Total Amount</h6>
+            </th>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Accept</h6>
+            </th>
+            <th class="border-bottom-0">
+              <h6 class="fw-semibold mb-0">Delete</h6>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if ( bookings && bookings.length > 0) { %>
+            <% bookings.forEach((Items, index) => { %>  
+                      <tr>
+                          <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= index + 1 %></h6></td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-large text-bl"><%=Items.username%></p>                         
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal text-bl"><%=Items.userPhone%></p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal text-bl"><%=Items.eventType%> on <%=Items.eventMode%> at <%=Items.eventdate%></p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal text-bl">2000</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <span><a href="/admin/change-status/<%=Items.booking_id%>/<%=Items.status%>"><i class="ti ti-circle-check btn btn-success">accept</i></a></span>
+                          </td>
+                          <td class="border-bottom-0">
+                            <span><a href="/admin/delete-status/<%=Items.booking_id%>"><i class="ti ti-trash btn btn-danger">cancel</i></a></span>
+                          </td>
+                        </tr> 
+                        <% }); %>
+                            <% } else { %>
+                              <tr>
+                                <td colspan="5" class="text-center">No data available</td>
+                              </tr>
+                            <% } %>             
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div><br>
+
+
+
+<!-- table end -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <%- include('scripts') -%>
+</body>
+
+</html>

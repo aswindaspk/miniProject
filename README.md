@@ -1,5 +1,14 @@
-# Online Event Management System
+# Event-Management-Aswin-Nodejs
 
 
-This abstract presents a comprehensive overview of the project titled ”Online Event man-agement system” which seeks to address the existing operational challenges faced by KaafEvents, a traditional offline event management and catering group. Kaaf Events Catering isa leading event management group based in Kozhikode which provides services all Kerala,with a dedicated team of event professionals who specialize in turning customers dreamsinto reality, whether planning a wedding, corporate gathering, birthday bash, or any specialoccasion. The Online Event management system enables customers/clients to view various packages about the event and make bookings through the online platform. It can help the customer with all of these details. It will work with choosing the right venue, setting the date and time, and planning the activities. The user gets all the resources at a single place instead of wandering around for these. This system is effective and saves time for the users.
-The process of planning and coordinating the event is usually referred to as event planning and it included catering, venue, videography and photography of the event, arranging decor, choosing themes for the event, transportation, etc. An event manager can improve the productivity of an event by using this system. No formal knowledge is needed for the user to use this system. Thus, by this all it proves it is user-friendly.
+user={
+  user_id: 4,
+  user_name: 'test',
+  user_email: 'test@gmail.com',
+  user_phone: 7994465741,
+  user_location: 'tirur',
+  user_zip: 663366,
+  user_password: 'a1234567'
+}
+
+done -3,4
